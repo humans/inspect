@@ -23,6 +23,13 @@ class Inspect
         return $method->invoke($this->reference, ...$arguments);
     }
 
+    public function __set($name, $value)
+    {
+        $property = new ReflectionProperty($this->reference, $name);
+
+        $property->setValue($this->reference, $value);
+    }
+    
     public function __get($name)
     {
         $property = new ReflectionProperty($this->reference, $name);

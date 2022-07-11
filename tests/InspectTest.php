@@ -7,6 +7,12 @@ use PHPUnit\Framework\TestCase;
 
 class Voice
 {
+    public $greeting = 'I am a public greeting.';
+    public function greeting()
+    {
+        return $this->greeting;
+    }
+
     public $shout = 'I am a public property.';
     public function shout()
     {
@@ -17,6 +23,12 @@ class Voice
     private function whisper()
     {
         return 'I am a private method.';
+    }
+
+    private $farewell = 'I am a private farewell';
+    private function farewell()
+    {
+        return $this->farewell;
     }
 }
 
@@ -39,6 +51,15 @@ class InspectTest extends TestCase
     }
 
     /** @test */
+    function it_assigns_public_variables()
+    {
+        $inspect = new Inspect(new Voice);
+        $inspect->greeting = 'Shout, shout, let it all out!';
+
+        $this->assertEquals($inspect->greeting(), 'Shout, shout, let it all out!');
+    }
+
+    /** @test */
     function it_accesses_private_properties()
     {
         $inspect = new Inspect(new Voice);
@@ -52,5 +73,14 @@ class InspectTest extends TestCase
         $inspect = new Inspect(new Voice);
 
         $this->assertEquals($inspect->whisper(), 'I am a private method.');
+    }
+
+    /** @test */
+    function it_assigns_private_variables()
+    {
+        $inspect = new Inspect(new Voice);
+        $inspect->farewell = "In case I don't see ya: Good afternoon, good evening, and good night!";
+
+        $this->assertEquals($inspect->farewell(), "In case I don't see ya: Good afternoon, good evening, and good night!");
     }
 }
