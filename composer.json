@@ -1,9 +1,13 @@
 {
     "autoload": {
-        "Humans\\Inspect\\": "src"
+        "psr-4": {
+            "Humans\\Inspect\\": "src"
+        }
     },
     "autoload-dev": {
-        "Tests\\": "tests/"
+        "psr-4": {
+            "Tests\\": "tests/"
+        }
     },
     "require-dev": {
         "phpunit/phpunit": "^9"
