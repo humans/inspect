@@ -1,8 +1,12 @@
 {
+    "name": "humans/inspect",
     "autoload": {
         "psr-4": {
             "Humans\\Inspect\\": "src"
-        }
+        },
+        "files": [
+            "./helpers.php"
+        ]
     },
     "autoload-dev": {
         "psr-4": {
